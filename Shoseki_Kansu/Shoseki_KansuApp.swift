@@ -8,9 +8,12 @@
 import SwiftUI
 
 @main
-struct Shoseki_KansuApp: App {
-    var body: some Scene {
-        WindowGroup {
+struct Shoseki_KansuApp: App
+{
+    var body: some Scene
+    {
+        WindowGroup
+        {
             ContentView()
         }
     }
