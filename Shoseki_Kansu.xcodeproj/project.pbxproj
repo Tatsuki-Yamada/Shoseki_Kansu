@@ -14,6 +14,7 @@
 		27685D83271893FF007CEBB7 /* Shoseki_KansuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D82271893FF007CEBB7 /* Shoseki_KansuTests.swift */; };
 		27685D8D271893FF007CEBB7 /* Shoseki_KansuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D8C271893FF007CEBB7 /* Shoseki_KansuUITests.swift */; };
 		27685D8F271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D8E271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift */; };
+		C462D1D427279CD20003B2B0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D1D327279CD20003B2B0 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		27685D88271893FF007CEBB7 /* Shoseki_KansuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Shoseki_KansuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27685D8C271893FF007CEBB7 /* Shoseki_KansuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoseki_KansuUITests.swift; sourceTree = "<group>"; };
 		27685D8E271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoseki_KansuUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C462D1D327279CD20003B2B0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoseki-Kansu-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +97,12 @@
 		27685D70271893FC007CEBB7 /* Shoseki_Kansu */ = {
 			isa = PBXGroup;
 			children = (
+				C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */,
 				27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */,
 				27685D73271893FC007CEBB7 /* ContentView.swift */,
 				27685D75271893FE007CEBB7 /* Assets.xcassets */,
 				27685D77271893FE007CEBB7 /* Preview Content */,
+				C462D1D327279CD20003B2B0 /* ImagePicker.swift */,
 			);
 			path = Shoseki_Kansu;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C462D1D427279CD20003B2B0 /* ImagePicker.swift in Sources */,
 				27685D74271893FC007CEBB7 /* ContentView.swift in Sources */,
 				27685D72271893FC007CEBB7 /* Shoseki_KansuApp.swift in Sources */,
 			);
@@ -423,6 +429,7 @@
 				DEVELOPMENT_TEAM = SW2ULMJ2H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shoseki-Kansu-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -455,6 +462,7 @@
 				DEVELOPMENT_TEAM = SW2ULMJ2H7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shoseki-Kansu-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
