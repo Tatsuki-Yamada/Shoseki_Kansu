@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct ContentView: View {
     
     @State private var showSheet: Bool = false
@@ -25,7 +25,6 @@ struct ContentView: View {
                         .default(Text("写真フォルダ")){
                             self.showImagePicker = true
                             self.sourceType = .photoLibrary
-                            
                         },
                         .default(Text("カメラ起動")){
                             self.showImagePicker = true
@@ -41,6 +40,15 @@ struct ContentView: View {
         }.sheet(isPresented: $showImagePicker){
             ImagePicker(image: $image,sourceType: self.sourceType)
         }
+    }
+}
+*/
+struct ContentView: View {
+    @State private var sourceType:UIImagePickerController.SourceType   = .camera
+    @State private var image: UIImage?
+    
+    var body: some View {
+        ImagePicker(image: $image,sourceType: self.sourceType)
     }
 }
 
