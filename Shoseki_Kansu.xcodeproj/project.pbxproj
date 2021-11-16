@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271498FA2743694A00CEB5A8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271498F92743694A00CEB5A8 /* SwiftyJSON.swift */; };
+		271498FD2743696B00CEB5A8 /* ISBNControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271498FB2743696B00CEB5A8 /* ISBNControl.swift */; };
+		271498FE2743696B00CEB5A8 /* ScrapingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271498FC2743696B00CEB5A8 /* ScrapingControl.swift */; };
 		272652562743648B0035E5CB /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272652552743648B0035E5CB /* CodeScanner.swift */; };
+		27340CC02743689C00D88C3B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 27340CBF2743689C00D88C3B /* Alamofire */; };
+		27340CC3274368A300D88C3B /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 27340CC2274368A300D88C3B /* Kanna */; };
 		27685D72271893FC007CEBB7 /* Shoseki_KansuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */; };
 		27685D74271893FC007CEBB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D73271893FC007CEBB7 /* ContentView.swift */; };
 		27685D76271893FE007CEBB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27685D75271893FE007CEBB7 /* Assets.xcassets */; };
@@ -36,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		271498F92743694A00CEB5A8 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		271498FB2743696B00CEB5A8 /* ISBNControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISBNControl.swift; sourceTree = "<group>"; };
+		271498FC2743696B00CEB5A8 /* ScrapingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrapingControl.swift; sourceTree = "<group>"; };
 		272652552743648B0035E5CB /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		27685D6E271893FC007CEBB7 /* Shoseki_Kansu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoseki_Kansu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoseki_KansuApp.swift; sourceTree = "<group>"; };
@@ -56,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27340CC3274368A300D88C3B /* Kanna in Frameworks */,
+				27340CC02743689C00D88C3B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +109,16 @@
 		27685D70271893FC007CEBB7 /* Shoseki_Kansu */ = {
 			isa = PBXGroup;
 			children = (
-				C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */,
-				27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */,
-				27685D73271893FC007CEBB7 /* ContentView.swift */,
 				27685D75271893FE007CEBB7 /* Assets.xcassets */,
-				27685D77271893FE007CEBB7 /* Preview Content */,
-				C462D1D327279CD20003B2B0 /* ImagePicker.swift */,
+				C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */,
 				272652552743648B0035E5CB /* CodeScanner.swift */,
+				27685D73271893FC007CEBB7 /* ContentView.swift */,
+				271498FC2743696B00CEB5A8 /* ScrapingControl.swift */,
+				27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */,
+				271498F92743694A00CEB5A8 /* SwiftyJSON.swift */,
+				C462D1D327279CD20003B2B0 /* ImagePicker.swift */,
+				271498FB2743696B00CEB5A8 /* ISBNControl.swift */,
+				27685D77271893FE007CEBB7 /* Preview Content */,
 			);
 			path = Shoseki_Kansu;
 			sourceTree = "<group>";
@@ -151,6 +164,10 @@
 			dependencies = (
 			);
 			name = Shoseki_Kansu;
+			packageProductDependencies = (
+				27340CBF2743689C00D88C3B /* Alamofire */,
+				27340CC2274368A300D88C3B /* Kanna */,
+			);
 			productName = Shoseki_Kansu;
 			productReference = 27685D6E271893FC007CEBB7 /* Shoseki_Kansu.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +240,10 @@
 				Base,
 			);
 			mainGroup = 27685D65271893FC007CEBB7;
+			packageReferences = (
+				27340CBE2743689C00D88C3B /* XCRemoteSwiftPackageReference "Alamofire" */,
+				27340CC1274368A300D88C3B /* XCRemoteSwiftPackageReference "Kanna" */,
+			);
 			productRefGroup = 27685D6F271893FC007CEBB7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -268,7 +289,10 @@
 				C462D1D427279CD20003B2B0 /* ImagePicker.swift in Sources */,
 				272652562743648B0035E5CB /* CodeScanner.swift in Sources */,
 				27685D74271893FC007CEBB7 /* ContentView.swift in Sources */,
+				271498FA2743694A00CEB5A8 /* SwiftyJSON.swift in Sources */,
 				27685D72271893FC007CEBB7 /* Shoseki_KansuApp.swift in Sources */,
+				271498FE2743696B00CEB5A8 /* ScrapingControl.swift in Sources */,
+				271498FD2743696B00CEB5A8 /* ISBNControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +646,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		27340CBE2743689C00D88C3B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		27340CC1274368A300D88C3B /* XCRemoteSwiftPackageReference "Kanna" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tid-kijyun/Kanna.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		27340CBF2743689C00D88C3B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27340CBE2743689C00D88C3B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		27340CC2274368A300D88C3B /* Kanna */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27340CC1274368A300D88C3B /* XCRemoteSwiftPackageReference "Kanna" */;
+			productName = Kanna;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27685D66271893FC007CEBB7 /* Project object */;
 }
