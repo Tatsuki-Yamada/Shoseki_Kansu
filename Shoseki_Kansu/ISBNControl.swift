@@ -22,14 +22,13 @@ class ISBNObject : ObservableObject{
         //let sukasuka : String = "9784041040393"
         //let kimetsu : String = "9784088807232"
         //let kimetsu23 : String = "9784088824956"
-        
-        GetTitle()
     }
     
     
     // Google Books APIsからタイトルを取得する
-    func GetTitle()
+    func GetTitle(_ after:@escaping (String) -> ())
     {
+        var title = ""
         // q=タイトル名で通常の検索
         // q=isbn:isbnコードでISBNに一致する本の検索
         let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(self.isbn)&Country=JP"
@@ -51,14 +50,16 @@ class ISBNObject : ObservableObject{
             // JSONのデータを走査し、タイトルを取得する
             for i in items
             {
-                let title = i["volumeInfo"]["title"].stringValue
+                title = i["volumeInfo"]["title"].stringValue
                 print(title)
                 
                 DispatchQueue.main.async {
                     let so = ScrapeObject(title: title)
+                    after(title)
                 }
             }
         }.resume()
+        
     }
 }
 
