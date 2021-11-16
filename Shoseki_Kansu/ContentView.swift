@@ -1,19 +1,38 @@
 //
 //  ContentView.swift
-//  Shoseki_Kansu
+//  model
 //
-//  Created by hw19a134 on 2021/10/15.
+//  Created by hw19a050 on 2021/11/08.
 //
 
 import SwiftUI
 
 struct ContentView: View {
-    @State private var sourceType:UIImagePickerController.SourceType   = .camera
-    @State private var image: UIImage?
+    @State var isPresentingScanner = false
+    @State var scannedCode: String = "Scan a QR code to get started."
     
+    var scannerSheet : some View {
+        CodeScannerView(
+            codeTypes: [.ean13],
+            completion:{ result in
+                if case let .success(code) = result {
+                    self.scannedCode = code
+                    self.isPresentingScanner = false
+                }
+            }
+        )
+    }
     var body: some View {
-        ImagePicker(image: $image,sourceType: self.sourceType)
-        
+        VStack(spacing: 10){
+            Text(scannedCode)
+            
+            Button("Scan QR Code"){
+                self.isPresentingScanner = true
+            }
+            .sheet(isPresented: $isPresentingScanner){
+                self.scannerSheet
+            }
+        }
     }
 }
 
