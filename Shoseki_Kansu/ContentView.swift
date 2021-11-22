@@ -22,8 +22,8 @@ struct ContentView: View {
                     self.isPresentingScanner = false
                     
                     let isbnObject = ISBNObject(isbn:code)
-                    isbnObject.GetTitle({ result in
-                        self.title = result
+                    isbnObject.GetTitle({ title in
+                        self.title = title
                     })
                 }
             }

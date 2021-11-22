@@ -7,6 +7,7 @@
 
 import AVFoundation
 import SwiftUI
+import UIKit
 
 /// A SwiftUI view that is able to scan barcodes, QR codes, and more, and send back what was found.
 /// To use, set `codeTypes` to be an array of things to scan for, e.g. `[.qr]`, and set `completion` to
@@ -168,6 +169,11 @@ public struct CodeScannerView: UIViewControllerRepresentable {
         var previewLayer: AVCaptureVideoPreviewLayer!
         var delegate: ScannerCoordinator?
         let videoCaptureDevice = AVCaptureDevice.default(for: .video)
+        
+        let x: CGFloat = 0.1
+        let y: CGFloat = 0.4
+        let width: CGFloat = 0.8
+        let height: CGFloat = 0.2
 
         private let showViewfinder: Bool
 
@@ -226,12 +232,10 @@ public struct CodeScannerView: UIViewControllerRepresentable {
                 
                 // 読み取り可能エリアの設定を行う
                 // 画面の横、縦に対して、左が10%、上が40%のところに、横幅80%、縦幅20%を読み取りエリアに設定
-                let x: CGFloat = 0.1
-                let y: CGFloat = 0.4
-                let width: CGFloat = 0.8
-                let height: CGFloat = 0.2
                 metadataOutput.rectOfInterest = CGRect(x: y, y: 1 - x - width, width: height, height: width)
                 
+
+
             } else {
                 delegate?.didFail(reason: .badOutput)
                 return
@@ -262,6 +266,14 @@ public struct CodeScannerView: UIViewControllerRepresentable {
             previewLayer.frame = view.layer.bounds
             previewLayer.videoGravity = .resizeAspectFill
             view.layer.addSublayer(previewLayer)
+            
+            // 読み取り可能エリアに赤い枠を追加する
+            let detectionArea = UIView()
+            detectionArea.frame = CGRect(x: view.frame.size.width * x, y: view.frame.size.height * y, width: view.frame.size.width * width, height: view.frame.size.height * height)
+            detectionArea.layer.borderColor = UIColor.red.cgColor
+            detectionArea.layer.borderWidth = 3
+            view.addSubview(detectionArea)
+            
             addviewfinder()
 
             delegate?.reset()
