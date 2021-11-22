@@ -12,6 +12,10 @@ class ScrapeObject : ObservableObject
     var headers: [String] = []
     var volumes: [String] = []
     
+    // 非同期処理が終わるのを待つためのセマフォ
+    var openSearchSemaphoe = DispatchSemaphore(value: 0)
+    var parseHTMLSemaphoe = DispatchSemaphore(value: 0)
+    
     
     init(title: String)
     {
@@ -25,16 +29,14 @@ class ScrapeObject : ObservableObject
             with: "",
             options: .regularExpression
         )
-        
-        OpenSearch()
     }
     
     
     // タイトルをBingで検索し、Wikipediaのサイトを見つけるように投げる巻数。
-    func OpenSearch()
+    func OpenSearch(_ after:@escaping ([String]) -> ())
     {
-        print("\nOpenWiki...\n")
-        
+        print("OpenSearch...\n")
+                
         let encodeTitleString = self.bookTitle.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
         let urlString = "https://www.bing.com/search?q=\(encodeTitleString!)+Wikipedia&mkt=ja-JP"
         //let urlString = "https://www.google.com/search?q=\(encodeTitleString!)+Wikipedia&hl=ja"
@@ -44,18 +46,25 @@ class ScrapeObject : ObservableObject
             switch response.result {
                 case let .success(value):
                     self.GetWikiLink(html: value)
-                
+                    
                 case let .failure(error):
                     print(error)
             }
         }
+        
+        DispatchQueue.global().async {
+            self.openSearchSemaphoe.wait()
+            after(self.volumes)
+        }
+         
+
     }
     
     
     // もらったHTMLからja.wikipediaのリンクを探して更に投げる巻数。
     func GetWikiLink(html: String)
     {
-        print("\nGetWikiLink...\n")
+        print("GetWikiLink...\n")
         
         if let doc = try? HTML(html: html, encoding: .utf8)
         {
@@ -68,12 +77,18 @@ class ScrapeObject : ObservableObject
                     AF.request(link).responseString { response in
                         switch response.result {
                             case let .success(value):
-                                self.ParseHTML(html: value)
+                                DispatchQueue.global(qos: .userInitiated).async {
+                                    self.ParseHTML(html: value)
+                                }
+                                
+                                self.parseHTMLSemaphoe.wait()
                             
                             case let .failure(error):
                                 print(error)
                         }
+                        self.openSearchSemaphoe.signal()
                     }
+                
                     break
                 }
             }
@@ -123,8 +138,10 @@ class ScrapeObject : ObservableObject
                 }
             }
             
-            print(self.headers)
-            print(self.volumes)
+            print(headers)
+            print(volumes)
+            
+            self.parseHTMLSemaphoe.signal()
         }
     }
 }

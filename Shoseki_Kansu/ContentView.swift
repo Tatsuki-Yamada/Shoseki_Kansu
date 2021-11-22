@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var isPresentingScanner = true
     @State var scannedCode: String = "Scan a QR code to get started."
     @State var title: String = "title"
+    @State var volume: String = "volume"
     
     
     var body: some View {
@@ -27,13 +28,26 @@ struct ContentView: View {
                         let isbnObject = ISBNObject(isbn:code)
                         isbnObject.GetTitle({ title in
                             self.title = title
+                            
+                            let scrapeObject = ScrapeObject(title: title)
+                            scrapeObject.OpenSearch({volume in
+                                self.volume = ""
+                                for v in volume
+                                {
+                                    self.volume += v
+                                }
+                                //self.volume = ""
+                            })
                         })
+                        
+                        
+                        
                     }
                 }
             )
             Text(scannedCode)
             Text(title)
-            Text(" ")
+            Text(volume)
             Text(" ")
             Text(" ")
             Text(" ")

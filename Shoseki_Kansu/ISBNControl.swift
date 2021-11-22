@@ -54,7 +54,6 @@ class ISBNObject : ObservableObject{
                 print(title)
                 
                 DispatchQueue.main.async {
-                    let so = ScrapeObject(title: title)
                     after(title)
                 }
             }
