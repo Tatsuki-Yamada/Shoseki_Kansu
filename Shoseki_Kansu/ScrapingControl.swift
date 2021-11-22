@@ -8,8 +8,8 @@ class ScrapeObject : ObservableObject
     // 本のタイトルがStringで入る
     var bookTitle = ""
     
-    // 見出しと巻数を格納するリスト
-    var headers: [String] = []
+    // 媒体と巻数を格納するリスト
+    var media: [String] = []
     var volumes: [String] = []
     
     // 非同期処理が終わるのを待つためのセマフォ
@@ -33,7 +33,7 @@ class ScrapeObject : ObservableObject
     
     
     // タイトルをBingで検索し、Wikipediaのサイトを見つけるように投げる巻数。
-    func OpenSearch(_ after:@escaping ([String]) -> ())
+    func OpenSearch(_ after:@escaping ([String], [String]) -> ())
     {
         print("OpenSearch...\n")
                 
@@ -54,7 +54,7 @@ class ScrapeObject : ObservableObject
         
         DispatchQueue.global().async {
             self.openSearchSemaphoe.wait()
-            after(self.volumes)
+            after(self.media, self.volumes)
         }
          
 
@@ -115,17 +115,17 @@ class ScrapeObject : ObservableObject
                 // 改行文字を削除する
                 let text = str.replacingOccurrences(of: "\n", with: "")
                 
-                // [小説][漫画]など大項目の部分であるかを調べる
+                // [小説][漫画]などの媒体であるかを調べる
                 var headerFlag = false
                 for _ in i.xpath("//th[@style='background:#ccf; text-align:center; white-space:nowrap']")
                 {
                     headerFlag = true
                 }
                 
-                // 見出しなら、それだけを取り出すリストに追加する
+                // 媒体なら、それだけを取り出すリストに追加する
                 if headerFlag
                 {
-                    self.headers.append(text)
+                    self.media.append(text)
                 }
                 
                 // 先頭2文字が"巻数"なら、そのあとに続く文字列をリストに追加する
@@ -138,7 +138,7 @@ class ScrapeObject : ObservableObject
                 }
             }
             
-            print(headers)
+            print(media)
             print(volumes)
             
             self.parseHTMLSemaphoe.signal()
