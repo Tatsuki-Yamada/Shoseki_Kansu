@@ -11,9 +11,9 @@ import Alamofire
 struct ContentView: View {
     @State var isPresentingScanner = true
     @State var scannedCode: String = "Scan a QR code to get started."
-    @State var title: String = "title"
-    @State var media: String = "media"
-    @State var volume: String = "volume"
+    @State var title: String = ""
+    @State var media: String = ""
+    @State var volume: String = ""
     
     
     var body: some View {
@@ -48,16 +48,25 @@ struct ContentView: View {
                     }
                 }
             )
-            Text(scannedCode)
-            Text(title)
-            Text(media)
-            Text(volume)
-            Text(" ")
-            Text(" ")
-            Text(" ")
-            Text(" ")
-            Text(" ")
+            List{
+                Section{
+                    Text(title).fontWeight(.heavy)
+                } header:{
+                    Text("タイトル").fontWeight(.black)
+                }
+                Section{
+                    Text(media).fontWeight(.heavy)
+                } header:{
+                    Text("種類").fontWeight(.black)
+                }
+                Section{
+                    Text(volume).fontWeight(.heavy)
+                } header:{
+                    Text("この本に関する情報").fontWeight(.black)
+                }
+            }
         }
+        
     }
 }
 
