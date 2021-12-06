@@ -18,7 +18,7 @@ class ISBNObject : ObservableObject{
     init(isbn: String)
     {
         self.isbn = isbn
-        
+        print(self.isbn)
         //let sukasuka : String = "9784041040393"
         //let kimetsu : String = "9784088807232"
         //let kimetsu23 : String = "9784088824956"

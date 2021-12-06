@@ -349,7 +349,7 @@ public struct CodeScannerView: UIViewControllerRepresentable {
     public var simulatedData = ""
     public var completion: (Result<String, ScanError>) -> Void
 
-    public init(codeTypes: [AVMetadataObject.ObjectType], scanMode: ScanMode = .once, showViewfinder: Bool = false, scanInterval: Double = 2.0, simulatedData: String = "", completion: @escaping (Result<String, ScanError>) -> Void) {
+    public init(codeTypes: [AVMetadataObject.ObjectType], scanMode: ScanMode = .continuous, showViewfinder: Bool = false, scanInterval: Double = 2.0, simulatedData: String = "", completion: @escaping (Result<String, ScanError>) -> Void) {
         self.codeTypes = codeTypes
         self.scanMode = scanMode
         self.showViewfinder = showViewfinder
