@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import Foundation
 
 struct ContentView: View {
     @State var isPresentingScanner = true
@@ -35,38 +36,35 @@ struct ContentView: View {
                                 self.media = ""
                                 for m in media
                                 {
-                                    self.media +=  "\(m), "
+                                    self.media +=  "\(m),"
                                 }
                                 
                                 self.volume = ""
                                 for v in volume
                                 {
-                                    self.volume += "\(v), "
+                                    self.volume += "\(v),"
                                 }
                             })
                         }) 
                     }
                 }
             )
+            let arr:[String] = media.components(separatedBy: ",")
             List{
                 Section{
                     Text(title).fontWeight(.heavy)
                 } header:{
                     Text("タイトル").fontWeight(.black)
                 }
-                Section{
-                    Text(media).fontWeight(.heavy)
-                } header:{
-                    Text("種類").fontWeight(.black)
-                }
-                Section{
-                    Text(volume).fontWeight(.heavy)
-                } header:{
-                    Text("この本に関する情報").fontWeight(.black)
+                ForEach(arr, id:\.self){ a in
+                    Section{
+                        Text(volume).fontWeight(.heavy)
+                    } header:{
+                        Text(a).fontWeight(.black)
+                    }
                 }
             }
         }
-        
     }
 }
 
