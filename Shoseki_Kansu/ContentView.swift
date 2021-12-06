@@ -12,12 +12,13 @@ import Foundation
 struct ContentView: View {
     @State var scannedCode: String = "Scan a QR code to get started."
     @State var title: String = ""
-    @State var media: String = ""
-    @State var volume: String = ""
+    @State var media: [String] = []
+    @State var volume: [String] = []
     @State var previousCode: String = ""
+    @State var showInfoSemaphoe: Bool = true
     
     
-    // ISBNコードであるか判定する関数
+    // ISBNコードであるか判定する関数（仮）
     func isMatchISBN(code: String) -> Bool
     {
         let pattern = "978[0-9]{10}"
@@ -50,37 +51,48 @@ struct ContentView: View {
                         isbnObject.GetTitle({ title in
                             self.title = title
                             
+                            // 情報の更新を行っている段階で画面の描画が入ると高確率でOutOfRangeが発生するため、情報の更新が終わるまで画面の描画を止める
+                            showInfoSemaphoe = false
+                            
                             // Wikipediaのスクレイピングをするオブジェクトの作成
                             let scrapeObject = ScrapeObject(title: title)
                             scrapeObject.OpenSearch({media, volume in
-                                self.media = ""
+                                self.media = []
                                 for m in media
                                 {
-                                    self.media +=  "\(m),"
+                                    self.media.append(m)
                                 }
                                 
-                                self.volume = ""
+                                self.volume = []
                                 for v in volume
                                 {
-                                    self.volume += "\(v),"
+                                    self.volume.append(v)
                                 }
+                                
+                                // 情報の更新が終わったので画面の描画を再開する
+                                showInfoSemaphoe = true
                             })
-                        }) 
+                            
+                        })
                     }
                 }
             )
-            let arr:[String] = media.components(separatedBy: ",")
             List{
                 Section{
                     Text(title).fontWeight(.heavy)
                 } header:{
                     Text("タイトル").fontWeight(.black)
                 }
-                ForEach(arr, id:\.self){ a in
-                    Section{
-                        Text(volume).fontWeight(.heavy)
-                    } header:{
-                        Text(a).fontWeight(.black)
+                
+                // 情報の更新を行っている際は画面に表示しない
+                if showInfoSemaphoe
+                {
+                    ForEach(0..<media.count, id:\.self){ i in
+                        Section{
+                            Text(volume[i]).fontWeight(.heavy)
+                        } header:{
+                            Text(media[i]).fontWeight(.black)
+                        }
                     }
                 }
             }
