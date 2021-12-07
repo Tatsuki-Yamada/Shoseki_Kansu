@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ISBN_View : View
 {
-    @ObservedObject var Books = ISBNObject(isbn: "9784041040393")
+    @ObservedObject var Books = ISBNObject(isbn: "")
     
     var body: some View
     {
@@ -17,11 +17,12 @@ class ISBNObject : ObservableObject{
     
     init(isbn: String)
     {
-        self.isbn = isbn
-        print(self.isbn)
         //let sukasuka : String = "9784041040393"
         //let kimetsu : String = "9784088807232"
         //let kimetsu23 : String = "9784088824956"
+        //let levelE : String = "9784088720715"
+        
+        self.isbn = isbn
     }
     
     
@@ -29,9 +30,9 @@ class ISBNObject : ObservableObject{
     func GetTitle(_ after:@escaping (String) -> ())
     {
         var title = ""
-        // q=タイトル名で通常の検索
-        // q=isbn:isbnコードでISBNに一致する本の検索
-        let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(self.isbn)&Country=JP"
+        // isbn="isbnコード"でISBNに一致する本の検索
+        //let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(self.isbn)&Country=JP"
+        let url = "https://api.openbd.jp/v1/get?isbn=\(self.isbn)"
         
         let session = URLSession(configuration: .default)
         
@@ -45,17 +46,11 @@ class ISBNObject : ObservableObject{
             
             // もらったJSONを扱える形に変換する
             let json = try! JSON(data: data!)
-            let items = json["items"].array!
+            title = json[0]["onix"]["DescriptiveDetail"]["TitleDetail"]["TitleElement"]["TitleText"]["content"].stringValue
+            print(title)
             
-            // JSONのデータを走査し、タイトルを取得する
-            for i in items
-            {
-                title = i["volumeInfo"]["title"].stringValue
-                print(title)
-                
-                DispatchQueue.main.async {
-                    after(title)
-                }
+            DispatchQueue.main.async {
+                after(title)
             }
         }.resume()
         
