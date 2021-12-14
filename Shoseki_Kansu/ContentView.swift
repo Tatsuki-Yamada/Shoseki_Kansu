@@ -77,11 +77,12 @@ struct ContentView: View {
                     }
                 }
             )
+            Text("バーコードを赤い枠の中に写してください").foregroundColor(.red)
             List{
                 Section{
                     Text(title).fontWeight(.heavy)
                 } header:{
-                    Text("タイトル").fontWeight(.black)
+                    Text("タイトル").fontWeight(.black).foregroundColor(.blue)
                 }
                 
                 // 情報の更新を行っている際は画面に表示しない
