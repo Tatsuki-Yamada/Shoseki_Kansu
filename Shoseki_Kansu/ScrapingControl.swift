@@ -129,7 +129,7 @@ class ScrapeObject : ObservableObject
                 }
                 
                 // 先頭2文字が"巻数"なら、そのあとに続く文字列をリストに追加する
-                if text.prefix(2) == "巻数"
+                if text.prefix(2) == "巻数" || text.prefix(4) == "刊行期間"
                 {
                     let startIndex = text.index(text.startIndex, offsetBy: 2)
                     let endIndex = text.index(text.endIndex, offsetBy: -1)

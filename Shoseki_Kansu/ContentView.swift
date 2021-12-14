@@ -116,21 +116,33 @@ struct ContentView: View {
                     }
                 }
             )
+            Text("バーコードを赤い枠の中に写してください").foregroundColor(.red)
             List{
                 Section{
                     Text(title).fontWeight(.heavy)
                 } header:{
-                    Text("タイトル").fontWeight(.black)
+                    Text("タイトル").fontWeight(.black).foregroundColor(.blue)
                 }
                 
                 // 情報の更新を行っている際は画面に表示しない
+                // TODO. wikipediaがなかったときのvolume mediaのout of range修正
                 if showInfoSemaphoe
                 {
                     ForEach(0..<media.count, id:\.self){ i in
                         Section{
-                            Text(volume[i]).fontWeight(.heavy)
+                            if i < volume.count
+                            {
+                                Text(volume[i]).fontWeight(.heavy)
+                            }
+                            else
+                            {
+                                Text("").fontWeight(.heavy)
+                            }
                         } header:{
-                            Text(media[i]).fontWeight(.black)
+                            if i < media.count
+                            {
+                                Text(media[i]).fontWeight(.black)
+                            }
                         }
                     }
                 }
