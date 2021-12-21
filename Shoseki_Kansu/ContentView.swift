@@ -17,6 +17,7 @@ struct ContentView: View {
     @State var previousCode: String = ""
     @State var showInfoSemaphoe: Bool = true
     
+    @Environment(\.colorScheme) var colorScheme //ダークモードか判定する変数
     
     // ISBNコードであるか判定する関数（仮）
     func isMatchISBN(code: String) -> Bool
@@ -78,21 +79,58 @@ struct ContentView: View {
                 }
             )
             Text("バーコードを赤い枠の中に写してください").foregroundColor(.red)
-            List{
-                Section{
-                    Text(title).fontWeight(.heavy)
-                } header:{
-                    Text("タイトル").fontWeight(.black).foregroundColor(.blue)
+            if colorScheme == .dark
+            {
+                List{
+                    Section{
+                        Text(title).fontWeight(.heavy)
+                            .listRowBackground(Color.primary)
+                            .foregroundColor(.black)
+                    } header:{
+                        Text("タイトル").fontWeight(.black).foregroundColor(.white)
+                    }
+                    
+                    // 情報の更新を行っている際は画面に表示しない
+                    if showInfoSemaphoe
+                    {
+                        ForEach(0..<media.count, id:\.self){ i in
+                            Section{
+                                Text(volume[i])
+                                    .fontWeight(.heavy)
+                                    .listRowBackground(Color.primary)
+                                    .foregroundColor(.black)
+                            } header:{
+                                Text(media[i])
+                                    .fontWeight(.black).foregroundColor(.white)
+                            }
+                        }
+                    }
                 }
-                
-                // 情報の更新を行っている際は画面に表示しない
-                if showInfoSemaphoe
-                {
-                    ForEach(0..<media.count, id:\.self){ i in
-                        Section{
-                            Text(volume[i]).fontWeight(.heavy)
-                        } header:{
-                            Text(media[i]).fontWeight(.black)
+            }
+            else
+            {
+                List{
+                    Section{
+                        Text(title).fontWeight(.heavy)
+                            .listRowBackground(Color.secondary)
+                            .foregroundColor(.white)
+                    } header:{
+                        Text("タイトル").fontWeight(.black).foregroundColor(.black)
+                    }
+                    
+                    // 情報の更新を行っている際は画面に表示しない
+                    if showInfoSemaphoe
+                    {
+                        ForEach(0..<media.count, id:\.self){ i in
+                            Section{
+                                Text(volume[i])
+                                    .fontWeight(.heavy)
+                                    .listRowBackground(Color.secondary)
+                                    .foregroundColor(.white)
+                            } header:{
+                                Text(media[i])
+                                    .fontWeight(.black).foregroundColor(.black)
+                            }
                         }
                     }
                 }
