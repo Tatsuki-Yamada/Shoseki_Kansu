@@ -18,7 +18,7 @@ struct ContentView: View {
     @State var showInfoSemaphoe: Bool = true
     
     
-    // ISBNコードであるか判定する関数（仮）
+    // ISBNコードであるか判定する関数
     func isMatchISBN(code: String) -> Bool
     {
         // 文字列の長さが10文字か13文字のときのみ追加で操作する
@@ -48,7 +48,9 @@ struct ContentView: View {
             
             if sum % 11 == 0
             {
+                print(sum)
                 return true
+                
             }
             else
             {
@@ -57,10 +59,54 @@ struct ContentView: View {
         }
         else if code.count == 13
         {
+            /*
             let pattern = "978[0-9]{10}"
             guard let regex = try? NSRegularExpression(pattern: pattern) else { return false };
             let checkingResults = regex.matches(in: code, range: NSRange(location: 0, length: code.count))
             return checkingResults.count > 0
+             */
+            var sum: Int = 0
+            
+            var i: Int = 0
+            for c in code
+            {
+                i += 1
+                
+                let c: String = String(c)
+                
+                // 13桁目のとき、チェックデジットと同じか照合する
+                if i == 13
+                {
+                    sum %= 100
+                    sum %= 10
+                    
+                    print("check 1")
+                    
+                    if Int(c)! == (10 - sum)
+                    {
+                        print(c)
+                        print("check true")
+                        return true
+                    }
+                    else
+                    {
+                        print("check false")
+                        return false
+                    }
+                }
+                
+                // 奇数桁の処理
+                if i % 2 == 1
+                {
+                    sum += Int(c)!
+                }
+                // 偶数桁の処理
+                else
+                {
+                    sum += Int(c)! * 3
+                }
+                
+            }
         }
 
         return false
