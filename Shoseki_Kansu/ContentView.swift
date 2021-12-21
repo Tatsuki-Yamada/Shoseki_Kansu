@@ -195,10 +195,10 @@ struct ContentView: View {
                 List{
                     Section{
                         Text(title).fontWeight(.heavy)
-                            .listRowBackground(Color.secondary)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                     } header:{
-                        Text("タイトル").fontWeight(.black).foregroundColor(.black)
+                        Text("タイトル").fontWeight(.black)
+                            .foregroundColor(.black)
                     }
                     
                     // 情報の更新を行っている際は画面に表示しない
@@ -208,11 +208,11 @@ struct ContentView: View {
                             Section{
                                 Text(volume[i])
                                     .fontWeight(.heavy)
-                                    .listRowBackground(Color.secondary)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
                             } header:{
                                 Text(media[i])
-                                    .fontWeight(.black).foregroundColor(.black)
+                                    .fontWeight(.black)
+                                    .foregroundColor(.black)
                             }	
                         }
                     }
