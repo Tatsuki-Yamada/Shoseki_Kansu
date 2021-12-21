@@ -22,12 +22,49 @@ struct ContentView: View {
     // ISBNコードであるか判定する関数（仮）
     func isMatchISBN(code: String) -> Bool
     {
-        let pattern = "978[0-9]{10}"
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return false };
-        let checkingResults = regex.matches(in: code, range: NSRange(location: 0, length: code.count))
-        return checkingResults.count > 0
+        // 文字列の長さが10文字か13文字のときのみ追加で操作する
+        if code.count == 10
+        {
+            var sum = 0
+            var mult = 10
+            
+            // 各桁を足していく
+            // summary: https://mathsuke.jp/isbn-10/
+            // summary: http://datablog.trc.co.jp/2007/01/30133853.html
+            for c in code
+            {
+                let c: String = String(c)
+                
+                if code == "X"
+                {
+                    sum += 10
+                }
+                else
+                {
+                    sum += Int(c)! * mult
+                }
+                
+                mult -= 1
+            }
+            
+            if sum % 11 == 0
+            {
+                return true
+            }
+            else
+            {
+                return false
+            }
+        }
+        else if code.count == 13
+        {
+            let pattern = "978[0-9]{10}"
+            guard let regex = try? NSRegularExpression(pattern: pattern) else { return false };
+            let checkingResults = regex.matches(in: code, range: NSRange(location: 0, length: code.count))
+            return checkingResults.count > 0
+        }
+        return false
     }
-    
     
     var body: some View {
         VStack(spacing: 10){
@@ -138,7 +175,6 @@ struct ContentView: View {
         }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

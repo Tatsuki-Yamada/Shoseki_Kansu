@@ -232,7 +232,7 @@ public struct CodeScannerView: UIViewControllerRepresentable {
                 
                 // 読み取り可能エリアの設定を行う
                 // 画面の横、縦に対して、左が10%、上が40%のところに、横幅80%、縦幅20%を読み取りエリアに設定
-                metadataOutput.rectOfInterest = CGRect(x: y, y: 1 - x - width, width: height, height: width)
+                metadataOutput.rectOfInterest = CGRect(x: (y + 0.05), y: 1 - x - width, width: (height - 0.1), height: width)
                 
 
 
