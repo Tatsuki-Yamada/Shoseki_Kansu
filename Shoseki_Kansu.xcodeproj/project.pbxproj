@@ -21,6 +21,7 @@
 		27685D8D271893FF007CEBB7 /* Shoseki_KansuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D8C271893FF007CEBB7 /* Shoseki_KansuUITests.swift */; };
 		27685D8F271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27685D8E271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift */; };
 		C462D1D427279CD20003B2B0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C462D1D327279CD20003B2B0 /* ImagePicker.swift */; };
+		C4FFC4C22768418F00B9C04A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4FFC4C12768418F00B9C04A /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		27685D8E271893FF007CEBB7 /* Shoseki_KansuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoseki_KansuUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C462D1D327279CD20003B2B0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shoseki-Kansu-Info.plist"; sourceTree = SOURCE_ROOT; };
+		C4FFC4C12768418F00B9C04A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				C4B23230272699140048B3EF /* Shoseki-Kansu-Info.plist */,
 				272652552743648B0035E5CB /* CodeScanner.swift */,
 				27685D73271893FC007CEBB7 /* ContentView.swift */,
+				C4FFC4C12768418F00B9C04A /* Colors.xcassets */,
 				271498FC2743696B00CEB5A8 /* ScrapingControl.swift */,
 				27685D71271893FC007CEBB7 /* Shoseki_KansuApp.swift */,
 				271498F92743694A00CEB5A8 /* SwiftyJSON.swift */,
@@ -260,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FFC4C22768418F00B9C04A /* Colors.xcassets in Resources */,
 				27685D79271893FE007CEBB7 /* Preview Assets.xcassets in Resources */,
 				27685D76271893FE007CEBB7 /* Assets.xcassets in Resources */,
 			);
@@ -487,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Shoseki_Kansu/Preview Content\"";
-				DEVELOPMENT_TEAM = SW2ULMJ2H7;
+				DEVELOPMENT_TEAM = PQ2KDJ9W83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Shoseki-Kansu-Info.plist";
